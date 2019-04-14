@@ -1,4 +1,4 @@
-package cn.edu.sdu.jt1078mediaserver;
+package sping;
 
 public class HelloWorld {
 

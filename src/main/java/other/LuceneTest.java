@@ -1,6 +1,5 @@
 package other;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -18,7 +17,6 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 import java.io.IOException;
 
@@ -56,7 +54,7 @@ public class LuceneTest {
         directory.close();
     }
 
-    private static final org.apache.logging.log4j.Logger logger = LogManager.getLogger("HelloWorld");
+    private static final Logger logger = LoggerFactory.getLogger(LuceneTest.class);
 
 
     public static void main(String args[]) throws IOException, ParseException {
