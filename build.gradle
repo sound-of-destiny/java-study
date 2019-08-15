@@ -37,4 +37,28 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-aop', version: '5.1.6.RELEASE'
     compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.13'
     compile group: 'org.elasticsearch', name: 'elasticsearch', version: '7.0.0'
+    compile group: 'com.google.guava', name: 'guava', version: '27.1-jre'
+    compile group: 'com.alibaba', name: 'dubbo', version: '2.6.6'
+    compile group: 'org.apache.zookeeper', name: 'zookeeper', version: '3.5.5'
+    compile group: 'org.apache.curator', name: 'curator-framework', version: '4.2.0'
+    compile group: 'org.db4j', name: 'kilim', version: '2.0.0-24-jdk11'
+    //jmhImplementation 'org.openjdk.jmh:jmh-core:1.21'
+    //jmhImplementation 'org.openjdk.jmh:jmh-generator-annprocess:1.21'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
+    compile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '4.12'
 }
+
+sourceSets {
+    jmh {
+        java.srcDirs = ['src/main/java']
+        resources.srcDirs = ['src/main/resources']
+        compileClasspath += sourceSets.main.runtimeClasspath
+    }
+}
+
+task jmh(type: JavaExec, dependsOn: jmhClasses) {
+    main = 'org.openjdk.jmh.Main'
+    classpath = sourceSets.jmh.compileClasspath + sourceSets.jmh.runtimeClasspath
+}
+
+classes.finalizedBy(jmhClasses)
